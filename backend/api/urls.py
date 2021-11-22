@@ -1,8 +1,7 @@
 from django.urls import path, include
-from notepad.views import w_count
-from .views import main
+from .views import NotepadView
 
 urlpatterns = [
-    path('', main)
+    path('home', NotepadView.as_view())
 
 ]

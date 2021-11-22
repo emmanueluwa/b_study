@@ -2,7 +2,7 @@ dev env in docker container
 
       docker compose up -d --build
       docker compose -f docker-compose.yml up -d --build
-      docker compose exec backend python manage.py migrate
+
       docker compose run --rm backend python manage.py makemigrations
       docker compose run --rm backend python manage.py migrate
 

@@ -14,6 +14,5 @@ from notepad.views import w_count
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('w_count', w_count, name='w_count'),
-    path('', include('api.urls'))
+    path('api/', include('api.urls'))
 ]
