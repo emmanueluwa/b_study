@@ -1,7 +1,7 @@
 from django.urls import path, include
-from .views import NotepadView
+from . import views
 
 urlpatterns = [
-    path('notepad', NotepadView.as_view())
-
+    path('journals/', views.getJournals, name="journals"),
+    path('journals/<str:pk>/', views.editJournals, name="journals"),
 ]

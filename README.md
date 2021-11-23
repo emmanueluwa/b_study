@@ -5,7 +5,7 @@ dev env in docker container
       docker compose -f docker-compose.yml up -d --build
 
       -- changes to req.txt and db --
-      docker-compose down
+      docker-compose stop
       docker compose up -d --build
 
       docker compose run --rm backend python manage.py makemigrations
