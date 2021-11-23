@@ -5,7 +5,7 @@ WORKDIR /code
 ENV PATH="./node_modules/.bin:$PATH"
 
 COPY package.json yarn.lock /code/
-# COPY package-lock.json /code/
+COPY package-lock.json /code/
 
 RUN npm install
 

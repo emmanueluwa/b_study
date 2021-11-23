@@ -1,7 +1,7 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 from .models import Notepad
 
-class NotepadSerializer(serializers.ModelSerializer):
+class NotepadSerializer(ModelSerializer):
     class Meta:
         model = Notepad
-        fields = ('id', 'body', 'updated', 'created')
+        fields = '__all__'

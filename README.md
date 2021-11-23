@@ -1,7 +1,12 @@
 dev env in docker container
 
+      -- start container --
       docker compose up -d --build
       docker compose -f docker-compose.yml up -d --build
+
+      -- changes to req.txt and db --
+      docker-compose down
+      docker compose up -d --build
 
       docker compose run --rm backend python manage.py makemigrations
       docker compose run --rm backend python manage.py migrate
@@ -21,3 +26,13 @@ https://github.com/veryacademy/docker-mastery-with-django/tree/main/Part-5%20Doc
 
       -- dockerfile
       https://stackoverflow.com/questions/62556972/docker-image-build-getting-stuck-at-npm-install-for-reactjs
+
+--react-router urls issue--
+
+      https://www.geeksforgeeks.org/reactjs-router/
+
+      https://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writing-manually
+
+--- choice of api for efficiency --
+
+      https://www.howtographql.com/basics/1-graphql-is-the-better-rest/
