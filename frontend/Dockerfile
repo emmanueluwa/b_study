@@ -14,4 +14,7 @@ COPY . /code/
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
+
+#nginx gunicorn
+RUN npm run build

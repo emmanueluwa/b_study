@@ -10,25 +10,32 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   backend:
-    build: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes: 
-      - ./backend:/code/backend
+    build:
+      context: ./backend
+    # allow app to be seen from outside container
+    command: gunicorn project.wsgi --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
     depends_on:
       - db
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+    #nginx will use the volumes to server the built react files
     volumes:
-      - ./frontend:/code
+      - frontend_build:/code/build
 
-      #one way volume allowing use of node_modules from inside image
-      - /code/node_modules
+  nginx:
+    image: nginx:latest
     ports:
-      - "3000:3000"
-    environment: 
-      - NODE_ENV=development
+      - 80:8080
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+      - frontend_build:/var/www/react
     depends_on:
-      - backend 
-    command: npm start
+      - backend
+      - frontend
+      - db
+volumes:
+  frontend_build:
+  
