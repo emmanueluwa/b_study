@@ -10,7 +10,6 @@ Function views
 
 from django.contrib import admin
 from django.urls import path, include
-from notepad.views import w_count
 
 urlpatterns = [
     path('admin/', admin.site.urls),

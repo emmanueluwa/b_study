@@ -8,8 +8,9 @@ dev env in docker container
       docker-compose stop
       docker compose up -d --build
 
-      docker compose run --rm backend python manage.py makemigrations
-      docker compose run --rm backend python manage.py migrate
+      docker compose exec backend python manage.py makemigrations
+      docker compose exec backend python manage.py migrate
+      docker compose exec backend python manage.py collectstatic
 
 ------------------ IGNORE ----------------------------
 
