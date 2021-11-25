@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import DashboardList from '../components/DashboardList'
 
 const JournalDashboard = () => {
 
@@ -18,7 +19,11 @@ const JournalDashboard = () => {
   
   return (
     <div>
-      Dashboard
+      <div className="dashboard-list">
+        {journals.map((journal, index) => (
+            <DashboardList key={index} journal={journal}/>
+        ))}
+      </div>
     </div>
   )
 }
