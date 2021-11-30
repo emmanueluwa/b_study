@@ -56,13 +56,13 @@ def getJournals(request):
 def editJournals(request, pk):
 
     if request.method == 'GET':
-        return getJournalDetail(request, pk)
+        return getJournalDetail(pk)
 
     if request.method == 'POST':
-        return createJournal(request, pk)
+        return createJournal(pk)
 
     if request.method == 'DELETE':
-        return deleteJournal(request, pk)
+        return deleteJournal(pk)
 
     
 

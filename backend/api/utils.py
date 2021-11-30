@@ -8,7 +8,7 @@ def getJournalList():
     return Response(serializer.data)
 
 def getJournalDetail(pk):
-    journal = Notepad.objects.all(id=pk)
+    journal = Notepad.objects.get(id=pk)
     serializer = NotepadSerializer(journal, many=False)
     return Response(serializer.data)
 
