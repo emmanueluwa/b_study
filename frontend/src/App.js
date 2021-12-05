@@ -7,6 +7,8 @@ import Header from './components/Header'
 import JournalDashboard from './pages/JournalDashboard'
 import JournalPage from './pages/JournalPage'
 
+
+
 function App() {
   
   return (
