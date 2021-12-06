@@ -6,9 +6,10 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 
-
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
+
+import { useState, useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -55,9 +56,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 const Header = () => {
   const classes = useStyles();
+
+  const [openDrawer, setOpenDrawer] = useState(false); 
+
+  const handleDrawerOpen = () => {
+    setOpenDrawer(true)
+  }
+
+  const handleDrawerClose = () => {
+    setOpenDrawer(false)
+  }
+
+  const [tabIndex, setTabIndex] = useState(false);
+
+  const handleTabIndexChange = (event, index) => {
+    setTabIndex(index)
+  }
 
   return (
     <Box>
@@ -68,13 +84,18 @@ const Header = () => {
               edge="start"
               color="inherit"
               arial-label="menu"
+              onClick={handleDrawerOpen}
               >
               <MenuIcon className={classes.burger} />
             </IconButton>
           </Hidden>
           <Typography component="h6" className={classes.logo}>PRAYR</Typography>
           <Hidden smDown>
-            <Tabs value={0} className={classes.tabs} classes={{ indicator: classes.indicator }}>
+            <Tabs 
+              value={tabIndex} 
+              onChange={handleTabIndexChange}
+              className={classes.tabs} 
+              classes={{ indicator: classes.indicator }}>
                 <Tab 
                   key={0}
                   label={'Home'}
@@ -106,9 +127,9 @@ const Header = () => {
       <Drawer 
         variant="persistent" 
         anchor="left" 
-        open={true} >
+        open={openDrawer} >
         <div  className={classes.drawerHeader}>
-          <IconButton >
+          <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
