@@ -1,9 +1,10 @@
-import { AppBar, Box, Typography, Tabs, Tab, Toolbar, IconButton, Badge, Hidden } from '@material-ui/core';
+import { AppBar, Box, Typography, Tabs, Tab, Toolbar, IconButton, Badge, Hidden, Drawer, List, ListItemText, Divider, ListItem } from '@material-ui/core';
 import React from 'react'
 
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 
 
 import { Link } from 'react-router-dom';
@@ -32,6 +33,24 @@ const useStyles = makeStyles((theme) => ({
   burger: {
     fontSize: '35px',
     marginRight: '10px'
+  },
+  logo: {
+    ...theme.fonts.bold,
+  },
+  badge: {
+    backgroundColor: theme.palette.common.amberbg,
+    border: '1px white solid',
+  },
+  indicator: {
+    backgroundColor: theme.palette.common.light
+  },
+  drawerHeader: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // make sure content is below header
+    ...theme.mixins.toolbar,
   }
 }));
 
@@ -53,9 +72,9 @@ const Header = () => {
               <MenuIcon className={classes.burger} />
             </IconButton>
           </Hidden>
-          <Typography component="h6">PRAYR</Typography>
+          <Typography component="h6" className={classes.logo}>PRAYR</Typography>
           <Hidden smDown>
-            <Tabs value={0} className={classes.tabs}>
+            <Tabs value={0} className={classes.tabs} classes={{ indicator: classes.indicator }}>
                 <Tab 
                   key={0}
                   label={'Home'}
@@ -72,10 +91,10 @@ const Header = () => {
           </Hidden>
           <Box className={classes.iconsWrap}>
             <IconButton size="small" component={Link} to={'/favourites'} color="inherit" edge="start" arial-label="favourites">
-              <Badge badgeContent={2}>
+              <Badge badgeContent={2} classes={{ badge: classes.badge  }}>
                 <StarBorderIcon />
               </Badge>
-            </IconButton>
+            </IconButton> 
 
             <IconButton size="small" component={Link} to={'/acount'} color="inherit" edge="start" arial-label="My account">
                 <AccountCircleIcon />
@@ -83,6 +102,37 @@ const Header = () => {
           </Box>
         </Toolbar>
       </AppBar>
+
+      <Drawer 
+        variant="persistent" 
+        anchor="left" 
+        open={true} >
+        <div  className={classes.drawerHeader}>
+          <IconButton >
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          <ListItem 
+            key={0} 
+            component={Link} 
+            to={'/'} 
+            selected={true} 
+            button>
+              <ListItemText primary={'Home'} />
+          </ListItem>
+
+          <ListItem 
+            key={1} 
+            component={Link} 
+            to={'/'} 
+            selected={false} 
+            button>
+              <ListItemText primary={'Theology'} />
+          </ListItem>
+        </List>
+      </Drawer>
     </Box>
   )
 }

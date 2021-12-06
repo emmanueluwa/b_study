@@ -39,6 +39,8 @@ export default createTheme({
       elements: `${elements}`,
       light: `${light}`,
       skills: `${skills}`,
+      amber: `${amber}`,
+      amberbg: `${amberbg}`,
     },
     background: {
       default: `${amberbg}`,
@@ -46,7 +48,7 @@ export default createTheme({
   },
   fonts: {
     bold: {
-      fontFamily: 'OpenSans-Regular',
+      fontFamily: 'OpenSans-Bold',
     },
     extraBold:{
       fontFamily: 'OpenSans-extraBold'
