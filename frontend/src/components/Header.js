@@ -75,6 +75,10 @@ const Header = () => {
     setTabIndex(index)
   }
 
+  const routes = [
+    { name: 'Home', link: '/', index: 0 },
+    { name: 'Theology', link: '/theology', index: 1 },
+  ]
   return (
     <Box>
       <AppBar position="static">
@@ -95,19 +99,20 @@ const Header = () => {
               value={tabIndex} 
               onChange={handleTabIndexChange}
               className={classes.tabs} 
-              classes={{ indicator: classes.indicator }}>
-                <Tab 
-                  key={0}
-                  label={'Home'}
+              classes={{ indicator: classes.indicator }}
+              
+              >
+                {routes.map((route, index ) => (
+                  <Tab 
+                  // making sure key is unique, and combining 2 values
+                  key={`${route}${index}`}
+                  label={route.name}
                   component={Link}
-                  to={'/'}
+                  to={route.link}
                 />
-                <Tab 
-                  key={1}
-                  label={'Theology'}
-                  component={Link}
-                  to={'/theology'}
-                />
+                ))}
+
+                
             </Tabs>
           </Hidden>
           <Box className={classes.iconsWrap}>
@@ -135,23 +140,16 @@ const Header = () => {
         </div>
         <Divider />
         <List>
+        {routes.map((route, index ) => (
           <ListItem 
-            key={0} 
+            key={`${route}${index}`} 
             component={Link} 
-            to={'/'} 
-            selected={true} 
+            to={route.link} 
+            selected={window.location.pathname === route.link} 
             button>
-              <ListItemText primary={'Home'} />
+              <ListItemText primary={route.name} />
           </ListItem>
-
-          <ListItem 
-            key={1} 
-            component={Link} 
-            to={'/'} 
-            selected={false} 
-            button>
-              <ListItemText primary={'Theology'} />
-          </ListItem>
+        ))}
         </List>
       </Drawer>
     </Box>
