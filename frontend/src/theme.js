@@ -1,6 +1,6 @@
 import { createTheme } from '@material-ui/core/styles';
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
-const breakkpoints =createBreakpoints({});
+const breakpoints =createBreakpoints({});
 
 const alpha = '#2C3E50'
 const beta = '#0A7ED2' 
@@ -40,5 +40,26 @@ export default createTheme({
       light: `${light}`,
       skills: `${skills}`,
     },
+    background: {
+      default: `${amberbg}`,
+    }
+  },
+  fonts: {
+    bold: {
+      fontFamily: 'OpenSans-Regular',
+    },
+    extraBold:{
+      fontFamily: 'OpenSans-extraBold'
+    },
+    light: {
+      fontFamily: 'OpenSans-Light',
+    }
+  },
+  container: {
+    width: '900px',
+    margin: '0 auto',
+    [breakpoints.down('sm')]: {
+      width: '100%',
+    }
   }
 });
